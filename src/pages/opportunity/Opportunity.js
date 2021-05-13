@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { PaginationWrapper, PhotoList } from '../../components';
 import { photosService } from '../../services';
-import styles from './Home.module.css';
+import styles from './Opportunity.module.css';
 import { useHistory } from 'react-router-dom';
 
-export const Home = () => {
+export const Opportunity = () => {
     const history = useHistory();
     const [photosList, setPhotosList] = useState([]);
     const [isLoading, setIsLoading] = useState(null);
     const [photoData, setPhotoData] = useState(null);
 
-    const fetchPhotos = async (photoParams) => {
+    const fetchOpPhotos = async (photoParams) => {
         try {
             setIsLoading(true);
-            const {photos} = await photosService.getCuriosityPhotos(photoParams);
+            const {photos} = await photosService.getOpportunityPhotos(photoParams);
             const totalResult = photos.length;
-            const page = 1; // todo
             const totalPages = Math.ceil(totalResult/25); // if 25 photo per page
-            setPhotoData({page, totalResult, totalPages})
+
+            console.log('|||||||||||||||||||||');
+            console.log(totalResult);
+            console.log(totalPages);
+            console.log('|||||||||||||||||||||');
+
+            setPhotoData({totalResult, totalPages})
             setPhotosList(photos);
             return photos;
         } catch(e) {
@@ -28,7 +33,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
-      fetchPhotos()
+         fetchOpPhotos()
     },[]);
 
     const renderLoadingIndicator = () => (
@@ -39,19 +44,18 @@ export const Home = () => {
         history.push(`/photo/${photo.id}`)
     };
 
-    const handlePageChange = async (page) => {
-        console.log(page);
-        await fetchPhotos({page})
+    const handlePageChange = async () => {
+        await fetchOpPhotos()
     };
 
     return (
         <div>
             {isLoading || isLoading === null ? renderLoadingIndicator() :  (
                 <PaginationWrapper
-                currentPage={photoData.page}
-                totalPages={photoData.totalPages}
-                onPrevClick={handlePageChange}
-                onNextClick={handlePageChange}
+                    currentPage={1}
+                    totalPages={photoData.totalPages}
+                    onPrevClick={handlePageChange}
+                    onNextClick={handlePageChange}
                 >
                     <PhotoList items={photosList} onPhotoClick={onPhotoClick} />
                 </PaginationWrapper>
