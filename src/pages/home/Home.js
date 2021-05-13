@@ -13,7 +13,7 @@ export const Home = () => {
     const fetchPhotos = async (photoParams) => {
         try {
             setIsLoading(true);
-            const {photos} = await photosService.getCuriosityPhotos(photoParams);
+            const {photos} = await photosService.getPhotos('curiosity', photoParams);
             const totalResult = photos.length;
             const page = 1; // todo
             const totalPages = Math.ceil(totalResult/25); // if 25 photo per page
