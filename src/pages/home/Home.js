@@ -15,10 +15,12 @@ export const Home = () => {
             setIsLoading(true);
             const {photos} = await photosService.getPhotos('curiosity', photoParams);
             const totalResult = photos.length;
-            const page = 1; // todo
+            const page = 1;
             const totalPages = Math.ceil(totalResult/25); // if 25 photo per page
             setPhotoData({page, totalResult, totalPages})
             setPhotosList(photos);
+            console.log(photoData);
+
             return photos;
         } catch(e) {
             console.error(e);
@@ -28,7 +30,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
-      fetchPhotos()
+        fetchPhotos()
     },[]);
 
     const renderLoadingIndicator = () => (
@@ -36,12 +38,13 @@ export const Home = () => {
     );
 
     const onPhotoClick = (photo) => {
-        history.push(`/photo/${photo.id}`)
+        history.push(`/photos/${photo.id}`)
     };
 
     const handlePageChange = async (page) => {
-        console.log(page);
-        await fetchPhotos({page})
+        // setPhotoData({...photoData, page})
+        await fetchPhotos({page});
+
     };
 
     return (

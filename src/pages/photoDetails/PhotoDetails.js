@@ -6,30 +6,34 @@ export const PhotoDetails = () => {
     const [photoDetails, setPhotoDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
     const {id} = useParams();
-    // console.log('+++++++++++++++++++=');
-    // console.log(params);
-    // console.log('+++++++++++++++++++=');
-
-    // const getPhotoDetails = async (id) => {
-    //    try{
-    //     setIsLoading(true);
-    //     const data = await
-    //     setPhotoDetails(data);
-    //     } catch(e) {
-    //     console.error(e);
-    //     } finally {
-    //     setIsLoading(false);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getPhotoDetails();
-    // });
+    console.log(id);
+//     // console.log('+++++++++++++++++++=');
+//     // console.log(params);
+//
+//     // console.log('+++++++++++++++++++=');
+//     //
+//     const getPhotoDetails = async (router, id) => {
+//        try{
+//         setIsLoading(true);
+//         const data = await photosService.getPhotoById('curiosity', id);
+//            console.log(data);
+//         setPhotoDetails(data);
+//         } catch(e) {
+//         console.error(e);
+//         } finally {
+//         setIsLoading(false);
+//         }
+//     }
+//
+//     useEffect(() => {
+//         getPhotoDetails();
+//     });
     if(isLoading || !photoDetails || isLoading === null) {
         return (<div>Loading...</div>)
     }
 
     return(
+
         <div>
             <h1>Hello from PhotoDetails </h1>
 

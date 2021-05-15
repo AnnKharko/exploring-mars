@@ -8,26 +8,26 @@ function App() {
   return (
       <BaseLayout>
 
-
           <div>
-                  <nav>
-                      <ul>
-                          <li>
-                              <Link to="/">Curiosity</Link>
-                          </li>
-                          <li>
-                              <Link to="/opportunity">Opportunity</Link>
-                          </li>
-                          <li>
-                              <Link to="/spirit">Spirit</Link>
-                          </li>
-                      </ul>
-                  </nav>
+
+              {/*<nav>*/}
+              {/*        <ul>*/}
+              {/*            <li>*/}
+              {/*                <Link to="/curiosity">Curiosity</Link>*/}
+              {/*            </li>*/}
+              {/*            <li>*/}
+              {/*                <Link to="/opportunity">Opportunity</Link>*/}
+              {/*            </li>*/}
+              {/*            <li>*/}
+              {/*                <Link to="/spirit">Spirit</Link>*/}
+              {/*            </li>*/}
+              {/*        </ul>*/}
+              {/*    </nav>*/}
               <Switch>
-                  <Route path='/' exact>
+                  <Route path='/curiosity' exact>
                       <Home/>
                   </Route>
-                  <Route path={'/photo/:id'}>
+                  <Route path={'/photos/:id'}>
                       <PhotoDetails/>
                   </Route>
                   <Route path='/opportunity'>
@@ -37,7 +37,7 @@ function App() {
                   {/*    <Spirit/>*/}
                   {/*</Route>*/}
                   <Route >
-                      <h1>PAGE NOT FOUND <button onClick={() => { history.push('/')}}>Go Home</button></h1>
+                      <h1>PAGE NOT FOUND <button onClick={() => { history.push('/curiosity')}}>Go Home</button></h1>
                   </Route>
               </Switch>
           </div>

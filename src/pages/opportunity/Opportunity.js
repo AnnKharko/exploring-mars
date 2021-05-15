@@ -31,7 +31,7 @@ export const Opportunity = () => {
         fetchPhotos()
     },[]);
 
-    const renderLoadingIndicator = () => (
+    const renderLoading = () => (
         <div className={styles.loading}> Loading...</div>
     );
 
@@ -45,14 +45,14 @@ export const Opportunity = () => {
     };
     return (
         <div>
-            {isLoading || isLoading === null ? renderLoadingIndicator() :  (
+            {isLoading || isLoading === null ? renderLoading() :  (
                 <PaginationWrapper
                     currentPage={photoData.page}
                     totalPages={photoData.totalPages}
                     onPrevClick={handlePageChange}
                     onNextClick={handlePageChange}
                 >
-                    <PhotoList items={photosList} onPhotoClick={onPhotoClick} />
+                    <PhotoList  items={photosList} onPhotoClick={onPhotoClick} />
                 </PaginationWrapper>
             ) }
         </div>

@@ -5,16 +5,37 @@
 }
 main {
     flex: 1;
-    padding: 20px;
+    /*padding: 20px;*/
     position: relative;
     overflow-y: auto;
-    background: white;
+    /*background: white;*/
+    background-color: #e6e6e6;
+
 }
 header, footer {
-    padding: 10px 20px;
+    /*padding: 10px 20px;*/
     background-color: lightgrey;
+}
+footer {
+    height: 50px;
 }
 a {
     text-decoration: none;
     color: black;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
+.subMain{
+    /*width: 200px;*/
+    width: auto;
+    /*position: fixed;*/
+    /*background-color: #0ab384;*/
+}
+.subMain2{
+    /*width: 760px;*/
+    width: 100%;
+    flex-grow: 1;
 }
