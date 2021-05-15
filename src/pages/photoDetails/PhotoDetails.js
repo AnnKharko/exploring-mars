@@ -12,22 +12,22 @@ export const PhotoDetails = () => {
 //
 //     // console.log('+++++++++++++++++++=');
 //     //
-//     const getPhotoDetails = async (router, id) => {
-//        try{
-//         setIsLoading(true);
-//         const data = await photosService.getPhotoById('curiosity', id);
-//            console.log(data);
-//         setPhotoDetails(data);
-//         } catch(e) {
-//         console.error(e);
-//         } finally {
-//         setIsLoading(false);
-//         }
-//     }
-//
-//     useEffect(() => {
-//         getPhotoDetails();
-//     });
+    const getPhotoDetails = async (rover, id) => {
+       try{
+        setIsLoading(true);
+        const data = await photosService.getPhotoById('curiosity', id);
+           console.log(data);
+        setPhotoDetails(data);
+        } catch(e) {
+        console.error(e);
+        } finally {
+        setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getPhotoDetails('curiosity', id);
+    });
     if(isLoading || !photoDetails || isLoading === null) {
         return (<div>Loading...</div>)
     }

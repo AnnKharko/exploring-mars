@@ -15,9 +15,9 @@ export const Home = () => {
             setIsLoading(true);
             const {photos} = await photosService.getPhotos('curiosity', photoParams);
             const totalResult = photos.length;
-            const page = 1;
+            // const page = 1;
             const totalPages = Math.ceil(totalResult/25); // if 25 photo per page
-            setPhotoData({page, totalResult, totalPages})
+            setPhotoData({page: 2, totalResult, totalPages})
             setPhotosList(photos);
             console.log(photoData);
 

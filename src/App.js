@@ -27,7 +27,7 @@ function App() {
                   <Route path='/curiosity' exact>
                       <Home/>
                   </Route>
-                  <Route path={'/photos/:id'}>
+                  <Route path={'/curiosity/photos/:id'}>
                       <PhotoDetails/>
                   </Route>
                   <Route path='/opportunity'>
