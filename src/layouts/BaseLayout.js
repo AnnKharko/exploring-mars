@@ -26,6 +26,15 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListIcon from '@material-ui/icons/List';
 
 import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FolderIcon from '@material-ui/icons/Folder';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 
 
@@ -70,13 +79,33 @@ export const BaseLayout = ({children}) => {
             right: 0,
             left: 0,
             backgroundOverlay: "rgba(0,0,0,.3)"
+        },
+        bottomNav: {
+            width: '100%',
+            backgroundColor: '#0ab384',
+
+
         }
     }));
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [checked, setChecked] = useState(true);
+    const [value, setValue] = useState('recents');
+    const [state, setState] = useState({
+        checkedA: true,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
+        checkedE: false,
+        checkedF: false,
+        checkedG: false,
+        checkedH: false,
+    });
 
+    const handleChangeFormGroup = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
     const handleClick = () => {
         setOpen(!open);
@@ -88,6 +117,9 @@ export const BaseLayout = ({children}) => {
              setChecked(event.target.checked);
     };
 
+    const handleChangeBottomNav = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
             <div className={styles.mainWrapper}>
@@ -134,6 +166,42 @@ export const BaseLayout = ({children}) => {
 
                             />
                         </Box>
+                        <Container>
+                            <FormGroup> Camera
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedA} onChange={handleChangeFormGroup} name="checkedA" />}
+                                    label="FHAZ"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedB} onChange={handleChangeFormGroup} name="checkedB" />}
+                                    label="RHAZ"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedC} onChange={handleChangeFormGroup} name="checkedC" />}
+                                    label="MAST"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedD} onChange={handleChangeFormGroup} name="checkedD" />}
+                                    label="MAHLI"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedE} onChange={handleChangeFormGroup} name="checkedE" />}
+                                    label="MARDI"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedF} onChange={handleChangeFormGroup} name="checkedF" />}
+                                    label="NAVCAM"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedG} onChange={handleChangeFormGroup} name="checkedG" />}
+                                    label="PANCAM"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={state.checkedH} onChange={handleChangeFormGroup} name="checkedH" />}
+                                    label="MINITES"
+                                />
+                            </FormGroup>
+                        </Container>
 
                     </div>
 
@@ -179,7 +247,14 @@ export const BaseLayout = ({children}) => {
                     </div>
                     </div>
                 </main>
-                <footer>Footer Data</footer>
+                <footer>
+                    <BottomNavigation value={value} onChange={handleChangeBottomNav} className={classes.bottomNav}>
+                        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
+                        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
+                        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+                        <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+                    </BottomNavigation>
+                </footer>
             </div>
         )
 };
