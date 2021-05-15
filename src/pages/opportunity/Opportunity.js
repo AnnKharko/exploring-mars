@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { PaginationWrapper, PhotoList } from '../../components';
-import { photosService } from '../../services';
-import styles from './Opportunity.module.css';
-import { useHistory } from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {useHistory} from "react-router-dom";
+import {photosService} from "../../services";
+import styles from "../home/Home.module.css";
+import {PaginationWrapper, PhotoList} from "../../components";
 
 export const Opportunity = () => {
     const history = useHistory();
@@ -10,19 +10,14 @@ export const Opportunity = () => {
     const [isLoading, setIsLoading] = useState(null);
     const [photoData, setPhotoData] = useState(null);
 
-    const fetchOpPhotos = async (photoParams) => {
+    const fetchPhotos = async (photoParams) => {
         try {
             setIsLoading(true);
-            const {photos} = await photosService.getOpportunityPhotos(photoParams);
+            const {photos} = await photosService.getPhotos('opportunity', photoParams);
             const totalResult = photos.length;
+            const page = 1; // todo
             const totalPages = Math.ceil(totalResult/25); // if 25 photo per page
-
-            console.log('|||||||||||||||||||||');
-            console.log(totalResult);
-            console.log(totalPages);
-            console.log('|||||||||||||||||||||');
-
-            setPhotoData({totalResult, totalPages})
+            setPhotoData({page, totalResult, totalPages})
             setPhotosList(photos);
             return photos;
         } catch(e) {
@@ -33,10 +28,10 @@ export const Opportunity = () => {
     };
 
     useEffect(() => {
-         fetchOpPhotos()
+        fetchPhotos()
     },[]);
 
-    const renderLoadingIndicator = () => (
+    const renderLoading = () => (
         <div className={styles.loading}> Loading...</div>
     );
 
@@ -44,20 +39,20 @@ export const Opportunity = () => {
         history.push(`/photo/${photo.id}`)
     };
 
-    const handlePageChange = async () => {
-        await fetchOpPhotos()
+    const handlePageChange = async (page) => {
+        console.log(page);
+        await fetchPhotos({page})
     };
-
     return (
         <div>
-            {isLoading || isLoading === null ? renderLoadingIndicator() :  (
+            {isLoading || isLoading === null ? renderLoading() :  (
                 <PaginationWrapper
-                    currentPage={1}
+                    currentPage={photoData.page}
                     totalPages={photoData.totalPages}
                     onPrevClick={handlePageChange}
                     onNextClick={handlePageChange}
                 >
-                    <PhotoList items={photosList} onPhotoClick={onPhotoClick} />
+                    <PhotoList  items={photosList} onPhotoClick={onPhotoClick} />
                 </PaginationWrapper>
             ) }
         </div>
