@@ -165,7 +165,7 @@ export const BaseLayout = ({children}) => {
                                             Exploring Mars
                                         </Typography>
                                         <Typography component={"h5"} color={"inherit"} paragraph>
-                                            lorem ipsum dolores  lorem ipsum dolores lorem ipsum dolores lorem ipsum dolores lorem ipsum dolores
+                                            This site helps people to explore NASA`s expeditions to Mars
                                         </Typography>
                                         {/*<Button variant={"contained"} color={"secondary"}>*/}
                                         {/*    Learn more*/}
